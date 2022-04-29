@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import myData from "./Form";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Create = () => {
     const [studentInput, setStudent] = useState({
@@ -25,7 +27,7 @@ const Create = () => {
         };
         await axios.post(`/api/users`, data).then((res) => {
             if (res.data.status === 200) {
-                alert("Success!", res.data.message, "success");
+                alert("no");
                 setStudent({
                     name: "",
                     DOB: "",
@@ -33,7 +35,7 @@ const Create = () => {
                     number: "",
                 });
             } else if (res.data.status === 422) {
-                alert("invalid input");
+                alert("no");
             }
         });
     };
@@ -81,6 +83,7 @@ const Create = () => {
                                             onChange={handleInput}
                                             value={studentInput.certificate}
                                         >
+                                            <option>--select--</option>
                                             {certificate.map((item) => {
                                                 return (
                                                     <>
@@ -110,6 +113,9 @@ const Create = () => {
                                         >
                                             Save Student
                                         </button>
+                                        <Link to="/CreateCertificate">
+                                            Certificate
+                                        </Link>
                                     </div>
                                 </form>
                             </div>
