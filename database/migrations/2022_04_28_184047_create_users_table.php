@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('number');
-            $table->timestamp('DOB');
+            $table->date('DOB');
             $table->unsignedBigInteger('certificate_id');
             $table->timestamps();
         });

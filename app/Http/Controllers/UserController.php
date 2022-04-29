@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return response()->json(User::with('certificate')->get());
+        return response()->json(User::with('certificate')->paginate(5));
     }
     public function create()
     {
@@ -23,7 +23,6 @@ class UserController extends Controller
             'certificate_id'=>'required'
         ]);
         User::create($request->all());
-
         return response()->json([
             'status'=> 200,
             'message'=>'Student Added Successfully',
